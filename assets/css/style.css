@@ -8,6 +8,11 @@
   src: url("../fonts/Berlin\ Sans\ FB\ Regular.ttf");
 }
 
+@font-face {
+  font-family: "Spartan Light";
+  src: url("../fonts/Spartan-Light.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -29,8 +34,9 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  min-height: 100vh;
   background-color: var(--purple);
 }
 
@@ -64,7 +70,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 8rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .title {
@@ -111,12 +118,37 @@ main {
   color: var(--iris);
 }
 
+nav {
+  margin-top: 2.7rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.3rem;
+}
+
+li {
+  font-family: "Berlin Sans FB";
+  font-size: 1.2rem;
+
+  list-style: none;
+}
+
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   background-color: var(--white);
-  color: var(--hyperlink);
-  text-align: center;
   padding: 1.4rem;
+}
+
+footer p {
+  font-family: "Spartan Light";
+  color: var(--hyperlink);
+  text-decoration: underline;
+  text-align: center;
+  font-size: 1rem;
 }
