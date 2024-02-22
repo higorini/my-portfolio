@@ -20,6 +20,10 @@
 }
 
 :root {
+  --transition-duration: 0.5s;
+  transition: background-color var(--transition-duration) ease,
+    color var(--transition-duration) ease;
+
   --purple: #130139;
   --white: #fff;
   --black: #000;
@@ -31,7 +35,16 @@
   color: var(--white);
 }
 
+.light-theme {
+  --purple: #fff;
+  --white: #130139;
+  --font: #000;
+  --hyperlink: #fff;
+  --iris: #fff;
+}
+
 body {
+  transition: background-color var(--transition-duration) ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -63,6 +76,10 @@ header {
   background-color: var(--iris);
   border-radius: 50%;
   position: absolute;
+}
+
+#logo {
+  transition: src var(--transition-duration) ease;
 }
 
 main {
@@ -112,10 +129,15 @@ main {
   height: 2.9rem;
   border-radius: 1.1rem;
   border: none;
+  background: var(--white);
 
   font-family: "Berlin Sans FB Demi Bold";
   font-size: 1.2rem;
   color: var(--iris);
+}
+
+#theme-toggle {
+  transition: src var(--transition-duration) ease;
 }
 
 nav {
@@ -152,4 +174,36 @@ footer p {
   text-decoration: underline;
   text-align: center;
   font-size: 1rem;
+}
+
+/* Loading Screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #130139;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.loader-logo {
+  width: 30rem;
+  height: 30rem;
+  background-image: url("../images/loading.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: pulse 0.4s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
 }
