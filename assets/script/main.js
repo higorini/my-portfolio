@@ -51,13 +51,9 @@ document.addEventListener("touchmove", function (event) {
   updateIrisPosition(touch.clientX, touch.clientY);
 });
 
-document.addEventListener(
-  "touchmove",
-  function (event) {
-    event.preventDefault();
-  },
-  { passive: false }
-);
+document.addEventListener("touchmove", function (event) {
+  event.preventDefault();
+});
 
 // Change theme color
 document.addEventListener("DOMContentLoaded", function () {

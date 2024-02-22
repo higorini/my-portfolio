@@ -193,7 +193,7 @@ footer p {
 .loader-logo {
   width: 30rem;
   height: 30rem;
-  background-image: url("../images/loading.png");
+  background-image: url("../images/loading.svg");
   background-size: contain;
   background-repeat: no-repeat;
   animation: pulse 0.4s infinite alternate;
