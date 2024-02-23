@@ -1,60 +1,72 @@
 let isMenuOpen = false;
 
 // Loading Screen
-document.addEventListener("DOMContentLoaded", function () {
+function showLoadingScreen() {
+  const loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.style.display = "block";
+}
+
+function hideLoadingScreen() {
+  const loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.style.display = "none";
+}
+
+function initializeLoadingScreen() {
+  showLoadingScreen();
   window.addEventListener("load", function () {
-    const loadingScreen = document.getElementById("loading-screen");
     const minDisplayTime = 2000;
     const elapsedTime =
       new Date().getTime() - window.performance.timing.navigationStart;
     const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
 
     setTimeout(function () {
-      loadingScreen.style.display = "none";
+      hideLoadingScreen();
     }, remainingTime);
   });
-});
-
-// Iris movement
-function updateIrisPosition(x, y) {
-  const eye = document.querySelector(".eye");
-  const iris = document.querySelector(".iris");
-  const eyeRect = eye.getBoundingClientRect();
-
-  const eyeX = eyeRect.left + eyeRect.width / 2;
-  const eyeY = eyeRect.top + eyeRect.height / 2;
-
-  const deltaX = x - eyeX;
-  const deltaY = y - eyeY;
-
-  const angle = Math.atan2(deltaY, deltaX);
-
-  const eyeRadius = eyeRect.width / 2;
-  const irisRadius = iris.offsetWidth / 2;
-  const maxMove = eyeRadius - irisRadius / 2;
-
-  const distance = Math.min(
-    Math.sqrt(deltaX * deltaX + deltaY * deltaY),
-    maxMove
-  );
-
-  const irisX = distance * Math.cos(angle);
-  const irisY = distance * Math.sin(angle);
-
-  iris.style.transform = `translate(${irisX}px, ${irisY}px)`;
 }
 
-document.addEventListener("mousemove", function (event) {
-  updateIrisPosition(event.clientX, event.clientY);
-});
-
-document.addEventListener("touchmove", function (event) {
-  const touch = event.touches[0];
-  updateIrisPosition(touch.clientX, touch.clientY);
-});
-
-// Change theme color
 document.addEventListener("DOMContentLoaded", function () {
+  initializeLoadingScreen();
+
+  // Iris movement
+  function updateIrisPosition(x, y) {
+    const eye = document.querySelector(".eye");
+    const iris = document.querySelector(".iris");
+    const eyeRect = eye.getBoundingClientRect();
+
+    const eyeX = eyeRect.left + eyeRect.width / 2;
+    const eyeY = eyeRect.top + eyeRect.height / 2;
+
+    const deltaX = x - eyeX;
+    const deltaY = y - eyeY;
+
+    const angle = Math.atan2(deltaY, deltaX);
+
+    const eyeRadius = eyeRect.width / 2;
+    const irisRadius = iris.offsetWidth / 2;
+    const maxMove = eyeRadius - irisRadius / 2;
+
+    const distance = Math.min(
+      Math.sqrt(deltaX * deltaX + deltaY * deltaY),
+      maxMove
+    );
+
+    const irisX = distance * Math.cos(angle);
+    const irisY = distance * Math.sin(angle);
+
+    iris.style.transform = `translate(${irisX}px, ${irisY}px)`;
+  }
+
+  document.addEventListener("mousemove", function (event) {
+    updateIrisPosition(event.clientX, event.clientY);
+  });
+
+  document.addEventListener("touchmove", function (event) {
+    const touch = event.touches[0];
+    updateIrisPosition(touch.clientX, touch.clientY);
+  });
+
+  // Change theme color
   const themeToggle = document.getElementById("theme-toggle");
   const logo = document.getElementById("logo");
   const menu = document.getElementById("menu");
@@ -90,10 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
     applyTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   });
-});
 
-// Change language
-document.addEventListener("DOMContentLoaded", function () {
+  // Change language
   const languageToggle = document.getElementById("language");
   const cachedLang = localStorage.getItem("language");
 
@@ -104,18 +114,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const userLang = navigator.language.substring(0, 2);
     updateLanguage(userLang);
     languageToggle.setAttribute("data-lang", userLang);
-
     localStorage.setItem("language", userLang);
   }
 
   languageToggle.addEventListener("click", function () {
     const currentLang = languageToggle.getAttribute("data-lang");
     const newLang = currentLang === "pt" ? "en" : "pt";
-
     updateLanguage(newLang);
-
     languageToggle.setAttribute("data-lang", newLang);
-
     localStorage.setItem("language", newLang);
   });
 
@@ -149,10 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
       flag.src = "./assets/images/english.svg";
     }
   }
-});
 
-// Open and close menu
-document.addEventListener("DOMContentLoaded", function () {
+  // Open and close menu
   const menuToggle = document.getElementById("menu");
   const menuBox = document.querySelector(".menu-box");
 
@@ -161,19 +165,29 @@ document.addEventListener("DOMContentLoaded", function () {
     isMenuOpen = !isMenuOpen;
     updateMenuImage();
   });
-});
 
-function updateMenuImage() {
-  const menuToggle = document.getElementById("menu");
-  const root = document.documentElement;
+  function updateMenuImage() {
+    const menuToggle = document.getElementById("menu");
+    const root = document.documentElement;
 
-  if (root.classList.contains("light-theme")) {
-    menuToggle.src = isMenuOpen
-      ? "./assets/images/close-light.svg"
-      : "./assets/images/open-light.svg";
-  } else {
-    menuToggle.src = isMenuOpen
-      ? "./assets/images/close-dark.svg"
-      : "./assets/images/open-dark.svg";
+    if (root.classList.contains("light-theme")) {
+      menuToggle.src = isMenuOpen
+        ? "./assets/images/close-light.svg"
+        : "./assets/images/open-light.svg";
+    } else {
+      menuToggle.src = isMenuOpen
+        ? "./assets/images/close-dark.svg"
+        : "./assets/images/open-dark.svg";
+    }
   }
-}
+
+  // Work button
+  const workButton = document.querySelector(".buttons button");
+
+  workButton.addEventListener("click", function () {
+    showLoadingScreen();
+    setTimeout(function () {
+      window.location.href = "./assets/pages/contact.html";
+    }, 2000);
+  });
+});

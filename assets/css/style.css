@@ -248,6 +248,10 @@ footer {
   background-size: contain;
   background-repeat: no-repeat;
   animation: pulse 0.4s infinite alternate;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes pulse {
