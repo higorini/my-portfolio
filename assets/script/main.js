@@ -53,10 +53,6 @@ document.addEventListener("touchmove", function (event) {
   updateIrisPosition(touch.clientX, touch.clientY);
 });
 
-document.addEventListener("touchmove", function (event) {
-  event.preventDefault();
-});
-
 // Change theme color
 document.addEventListener("DOMContentLoaded", function () {
   const themeToggle = document.getElementById("theme-toggle");
@@ -71,22 +67,17 @@ document.addEventListener("DOMContentLoaded", function () {
       logo.classList.add("logo-light");
       logo.src = "./assets/images/logo-light.svg";
       themeToggle.src = "./assets/images/dark.svg";
-
-      if (!isMenuOpen) {
-        return (menu.src = "./assets/images/open-light.svg");
-      } else {
-        return (menu.src = "./assets/images/close-light.svg");
-      }
+      menu.src = isMenuOpen
+        ? "./assets/images/close-light.svg"
+        : "./assets/images/open-light.svg";
     } else {
       root.classList.remove("light-theme");
       logo.classList.remove("logo-light");
       logo.src = "./assets/images/logo-dark.svg";
       themeToggle.src = "./assets/images/light.svg";
-      if (!isMenuOpen) {
-        menu.src = "./assets/images/open-dark.svg";
-      } else {
-        menu.src = "./assets/images/close-dark.svg";
-      }
+      menu.src = isMenuOpen
+        ? "./assets/images/close-dark.svg"
+        : "./assets/images/open-dark.svg";
     }
   }
 
@@ -95,27 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   themeToggle.addEventListener("click", function () {
-    if (root.classList.contains("light-theme")) {
-      root.classList.remove("light-theme");
-      logo.src = "./assets/images/logo-dark.svg";
-      themeToggle.src = "./assets/images/light.svg";
-      if (!isMenuOpen) {
-        menu.src = "./assets/images/open-dark.svg";
-      } else {
-        menu.src = "./assets/images/close-dark.svg";
-      }
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.classList.add("light-theme");
-      logo.src = "./assets/images/logo-light.svg";
-      themeToggle.src = "./assets/images/dark.svg";
-      if (!isMenuOpen) {
-        menu.src = "./assets/images/open-light.svg";
-      } else {
-        menu.src = "./assets/images/close-light.svg";
-      }
-      localStorage.setItem("theme", "light");
-    }
+    const newTheme = root.classList.contains("light-theme") ? "dark" : "light";
+    applyTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   });
 });
 
@@ -150,18 +123,57 @@ document.addEventListener("DOMContentLoaded", function () {
     const flag = document.querySelector("#language");
     const title = document.querySelector("#title");
     const role = document.querySelector("#role");
+    const about = document.querySelector("#about");
+    const works = document.querySelector("#works");
+    const projects = document.querySelector("#projects");
+    const contact = document.querySelector("#contact");
     const workButton = document.querySelector(".buttons button");
 
     if (lang === "en") {
       title.textContent = "FOUNDER & CEO AT LIONFORGE";
       role.textContent = "WEB DEVELOPER";
       workButton.textContent = "LET'S WORK!";
+      about.textContent = "ABOUT ME";
+      works.textContent = "WORKS";
+      projects.textContent = "PROJECTS";
+      contact.textContent = "CONTACT";
       flag.src = "./assets/images/portuguese.svg";
     } else {
       title.textContent = "FUNDADOR & CEO DA LIONFORGE";
       role.textContent = "DESENVOLVEDOR WEB";
       workButton.textContent = "BORA TRABALHAR!";
+      about.textContent = "SOBRE MIM";
+      works.textContent = "TRABALHOS";
+      projects.textContent = "PROJETOS";
+      contact.textContent = "CONTATO";
       flag.src = "./assets/images/english.svg";
     }
   }
 });
+
+// Open and close menu
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menu");
+  const menuBox = document.querySelector(".menu-box");
+
+  menuToggle.addEventListener("click", function () {
+    menuBox.classList.toggle("open");
+    isMenuOpen = !isMenuOpen;
+    updateMenuImage();
+  });
+});
+
+function updateMenuImage() {
+  const menuToggle = document.getElementById("menu");
+  const root = document.documentElement;
+
+  if (root.classList.contains("light-theme")) {
+    menuToggle.src = isMenuOpen
+      ? "./assets/images/close-light.svg"
+      : "./assets/images/open-light.svg";
+  } else {
+    menuToggle.src = isMenuOpen
+      ? "./assets/images/close-dark.svg"
+      : "./assets/images/open-dark.svg";
+  }
+}

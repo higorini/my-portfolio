@@ -26,9 +26,11 @@
 
   --purple: #130139;
   --white: #fff;
+  --white-menu: #f8f8f8;
   --black: #000;
   --iris: #1c0541;
   --font: #eff7ff;
+  --menu: rgba(17, 6, 40, 0.6);
   --hyperlink: #5200ff;
 
   font-size: 62.5%;
@@ -38,7 +40,9 @@
 .light-theme {
   --purple: #fff;
   --white: #130139;
+  --white-menu: #130139;
   --font: #000;
+  --menu: rgba(223, 220, 231, 0.6);
   --hyperlink: #fff;
   --iris: #fff;
 }
@@ -128,21 +132,74 @@ nav {
 
 #menu {
   transition: src var(--transition-duration) ease;
+  cursor: pointer;
 }
 
-ul {
+.menu-box {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.3rem;
 }
 
-li {
-  font-family: "Berlin Sans FB";
-  font-size: 1.2rem;
+.menu {
+  background-color: var(--menu);
+  backdrop-filter: blur(1rem);
+  filter: blur(0);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.7s;
+  padding: 1rem;
+  width: 21.7rem;
+  height: 31rem;
+  border-radius: 2rem;
+  z-index: 3;
+}
 
+.menu::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(40deg);
+  bottom: -0.9rem;
+  height: 2rem;
+  width: 2rem;
+  z-index: -2;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.menu ul {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.menu ul li {
   list-style: none;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.menu ul li a {
+  width: 100%;
+  text-decoration: none;
+  line-height: 4rem;
+  display: flex;
+  justify-content: center;
+  outline: none;
+}
+
+.menu ul li a span {
+  font-family: "Berlin Sans FB";
+  font-size: 1.6rem;
+  color: var(--white);
+}
+
+.menu-box.open .menu {
+  transform: translate(-50%, -56%) scale(1);
 }
 
 footer {
