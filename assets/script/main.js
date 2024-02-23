@@ -1,6 +1,6 @@
 let isMenuOpen = false;
 
-// Loading Screen
+// Loading screen
 function showLoadingScreen() {
   const loadingScreen = document.getElementById("loading-screen");
   loadingScreen.style.display = "block";
@@ -13,7 +13,7 @@ function hideLoadingScreen() {
 
 function initializeLoadingScreen() {
   showLoadingScreen();
-  window.addEventListener("load", function () {
+  window.addEventListener("pageshow", function (event) {
     const minDisplayTime = 2000;
     const elapsedTime =
       new Date().getTime() - window.performance.timing.navigationStart;
@@ -28,7 +28,7 @@ function initializeLoadingScreen() {
 document.addEventListener("DOMContentLoaded", function () {
   initializeLoadingScreen();
 
-  // Iris movement
+  // Eye animation
   function updateIrisPosition(x, y) {
     const eye = document.querySelector(".eye");
     const iris = document.querySelector(".iris");
@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
       root.classList.add("light-theme");
       logo.classList.add("logo-light");
       logo.src = "./assets/images/logo-light.svg";
-      themeToggle.src = "./assets/images/dark.svg";
       menu.src = isMenuOpen
         ? "./assets/images/close-light.svg"
         : "./assets/images/open-light.svg";
@@ -86,11 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
       root.classList.remove("light-theme");
       logo.classList.remove("logo-light");
       logo.src = "./assets/images/logo-dark.svg";
-      themeToggle.src = "./assets/images/light.svg";
       menu.src = isMenuOpen
         ? "./assets/images/close-dark.svg"
         : "./assets/images/open-dark.svg";
     }
+    themeToggle.src = `./assets/images/${theme}.svg`;
   }
 
   if (storedTheme) {
@@ -98,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   themeToggle.addEventListener("click", function () {
+    event.stopPropagation();
     const newTheme = root.classList.contains("light-theme") ? "dark" : "light";
     applyTheme(newTheme);
     localStorage.setItem("theme", newTheme);
@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   languageToggle.addEventListener("click", function () {
+    event.stopPropagation();
     const currentLang = languageToggle.getAttribute("data-lang");
     const newLang = currentLang === "pt" ? "en" : "pt";
     updateLanguage(newLang);
@@ -156,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Open and close menu
+  // Open & close menu
   const menuToggle = document.getElementById("menu");
   const menuBox = document.querySelector(".menu-box");
 
@@ -166,6 +167,19 @@ document.addEventListener("DOMContentLoaded", function () {
     updateMenuImage();
   });
 
+  document.addEventListener("click", function (event) {
+    const menuBox = document.querySelector(".menu-box");
+    const menuToggle = document.getElementById("menu");
+    const isClickInsideMenu =
+      menuBox.contains(event.target) || menuToggle.contains(event.target);
+    if (!isClickInsideMenu && isMenuOpen) {
+      menuBox.classList.remove("open");
+      isMenuOpen = false;
+      updateMenuImage();
+    }
+  });
+
+  // Update menu image
   function updateMenuImage() {
     const menuToggle = document.getElementById("menu");
     const root = document.documentElement;
