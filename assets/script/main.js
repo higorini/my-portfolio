@@ -159,11 +159,9 @@ document.addEventListener("DOMContentLoaded", function () {
       flag.src = "./assets/images/portuguese.svg";
     } else {
       title.textContent = "FUNDADOR & CEO DA LIONFORGE";
-      role.textContent = "DESENVOLVEDOR";
+      role.textContent = "DESENVOLVEDOR WEB";
       workButton.textContent = "BORA TRABALHAR!";
       flag.src = "./assets/images/english.svg";
     }
-
-    console.log("Idioma atualizado para:", lang);
   }
 });
