@@ -1,3 +1,5 @@
+let isMenuOpen = false;
+
 // Loading Screen
 document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("load", function () {
@@ -29,7 +31,7 @@ function updateIrisPosition(x, y) {
 
   const eyeRadius = eyeRect.width / 2;
   const irisRadius = iris.offsetWidth / 2;
-  const maxMove = eyeRadius - irisRadius / 8;
+  const maxMove = eyeRadius - irisRadius / 2;
 
   const distance = Math.min(
     Math.sqrt(deltaX * deltaX + deltaY * deltaY),
@@ -51,18 +53,15 @@ document.addEventListener("touchmove", function (event) {
   updateIrisPosition(touch.clientX, touch.clientY);
 });
 
-document.addEventListener(
-  "touchmove",
-  function (event) {
-    event.preventDefault();
-  },
-  { passive: false }
-);
+document.addEventListener("touchmove", function (event) {
+  event.preventDefault();
+});
 
 // Change theme color
 document.addEventListener("DOMContentLoaded", function () {
   const themeToggle = document.getElementById("theme-toggle");
   const logo = document.getElementById("logo");
+  const menu = document.getElementById("menu");
   const root = document.documentElement;
   const storedTheme = localStorage.getItem("theme");
 
@@ -72,11 +71,22 @@ document.addEventListener("DOMContentLoaded", function () {
       logo.classList.add("logo-light");
       logo.src = "./assets/images/logo-light.svg";
       themeToggle.src = "./assets/images/dark.svg";
+
+      if (!isMenuOpen) {
+        return (menu.src = "./assets/images/open-light.svg");
+      } else {
+        return (menu.src = "./assets/images/close-light.svg");
+      }
     } else {
       root.classList.remove("light-theme");
       logo.classList.remove("logo-light");
       logo.src = "./assets/images/logo-dark.svg";
       themeToggle.src = "./assets/images/light.svg";
+      if (!isMenuOpen) {
+        menu.src = "./assets/images/open-dark.svg";
+      } else {
+        menu.src = "./assets/images/close-dark.svg";
+      }
     }
   }
 
@@ -89,11 +99,21 @@ document.addEventListener("DOMContentLoaded", function () {
       root.classList.remove("light-theme");
       logo.src = "./assets/images/logo-dark.svg";
       themeToggle.src = "./assets/images/light.svg";
+      if (!isMenuOpen) {
+        menu.src = "./assets/images/open-dark.svg";
+      } else {
+        menu.src = "./assets/images/close-dark.svg";
+      }
       localStorage.setItem("theme", "dark");
     } else {
       root.classList.add("light-theme");
       logo.src = "./assets/images/logo-light.svg";
       themeToggle.src = "./assets/images/dark.svg";
+      if (!isMenuOpen) {
+        menu.src = "./assets/images/open-light.svg";
+      } else {
+        menu.src = "./assets/images/close-light.svg";
+      }
       localStorage.setItem("theme", "light");
     }
   });

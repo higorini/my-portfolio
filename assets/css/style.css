@@ -49,33 +49,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  max-height: 100vh;
   background-color: var(--purple);
 }
 
 header {
-  position: fixed;
-  top: -27.5rem;
-}
-
-.eye {
-  width: 32rem;
-  height: 32rem;
+  min-width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: var(--white);
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
+  padding: 2.3rem 1.9rem;
 }
 
-.iris {
-  width: 7.3rem;
-  height: 7.3rem;
-  background-color: var(--iris);
-  border-radius: 50%;
-  position: absolute;
+#theme-toggle {
+  transition: src var(--transition-duration) ease;
 }
 
 #logo {
@@ -87,16 +74,15 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 7rem;
 }
 
 .title {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 1.1rem;
-  gap: 0.4rem;
+  margin-top: 2.3rem;
+  gap: 0.8rem;
 }
 
 .title h1 {
@@ -111,7 +97,7 @@ main {
 }
 
 .title p:last-child {
-  margin-top: 2.1rem;
+  margin-top: 2.9rem;
   font-size: 1.2rem;
 }
 
@@ -121,7 +107,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 2.6rem;
-  margin-top: 3.2rem;
+  margin-top: 2.9rem;
 }
 
 .buttons button {
@@ -136,12 +122,12 @@ main {
   color: var(--iris);
 }
 
-#theme-toggle {
-  transition: src var(--transition-duration) ease;
+nav {
+  margin-top: 5.2rem;
 }
 
-nav {
-  margin-top: 2.7rem;
+#menu {
+  transition: src var(--transition-duration) ease;
 }
 
 ul {
@@ -161,19 +147,27 @@ li {
 
 footer {
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--white);
-  padding: 1.4rem;
-  margin-top: 3.9rem;
+  bottom: -24.7rem;
 }
 
-footer p {
-  font-family: "Spartan Light";
-  color: var(--hyperlink);
-  text-decoration: underline;
-  text-align: center;
-  font-size: 1rem;
+.eye {
+  width: 36rem;
+  height: 32rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.iris {
+  width: 9.1rem;
+  height: 9.1rem;
+  background-color: var(--iris);
+  border-radius: 50%;
+  position: absolute;
 }
 
 /* Loading Screen */
