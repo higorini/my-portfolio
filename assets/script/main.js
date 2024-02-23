@@ -118,3 +118,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// Change language
+document.addEventListener("DOMContentLoaded", function () {
+  const languageToggle = document.getElementById("language");
+  const cachedLang = localStorage.getItem("language");
+
+  if (cachedLang) {
+    updateLanguage(cachedLang);
+    languageToggle.setAttribute("data-lang", cachedLang);
+  } else {
+    const userLang = navigator.language.substring(0, 2);
+    updateLanguage(userLang);
+    languageToggle.setAttribute("data-lang", userLang);
+
+    localStorage.setItem("language", userLang);
+  }
+
+  languageToggle.addEventListener("click", function () {
+    const currentLang = languageToggle.getAttribute("data-lang");
+    const newLang = currentLang === "pt" ? "en" : "pt";
+
+    updateLanguage(newLang);
+
+    languageToggle.setAttribute("data-lang", newLang);
+
+    localStorage.setItem("language", newLang);
+  });
+
+  function updateLanguage(lang) {
+    const flag = document.querySelector("#language");
+    const title = document.querySelector("#title");
+    const role = document.querySelector("#role");
+    const workButton = document.querySelector(".buttons button");
+
+    if (lang === "en") {
+      title.textContent = "FOUNDER & CEO AT LIONFORGE";
+      role.textContent = "WEB DEVELOPER";
+      workButton.textContent = "LET'S WORK!";
+      flag.src = "./assets/images/portuguese.svg";
+    } else {
+      title.textContent = "FUNDADOR & CEO DA LIONFORGE";
+      role.textContent = "DESENVOLVEDOR";
+      workButton.textContent = "BORA TRABALHAR!";
+      flag.src = "./assets/images/english.svg";
+    }
+
+    console.log("Idioma atualizado para:", lang);
+  }
+});
