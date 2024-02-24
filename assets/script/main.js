@@ -110,11 +110,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (cachedLang) {
     updateLanguage(cachedLang);
     languageToggle.setAttribute("data-lang", cachedLang);
+    document.documentElement.lang = cachedLang === "pt" ? "pt-PT" : "en";
   } else {
     const userLang = navigator.language.substring(0, 2);
     updateLanguage(userLang);
     languageToggle.setAttribute("data-lang", userLang);
     localStorage.setItem("language", userLang);
+    document.documentElement.lang = userLang === "pt" ? "pt-PT" : "en";
   }
 
   languageToggle.addEventListener("click", function () {
@@ -124,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
     updateLanguage(newLang);
     languageToggle.setAttribute("data-lang", newLang);
     localStorage.setItem("language", newLang);
+
+    document.documentElement.lang = newLang === "pt" ? "pt-PT" : "en";
   });
 
   function updateLanguage(lang) {
