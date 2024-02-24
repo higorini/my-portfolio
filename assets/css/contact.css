@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.contact-main {
+  position: relative;
+  width: 24.9rem;
+  height: fit-content;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.contact-header {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-10%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-header img {
+  width: 5rem;
+  margin-bottom: 0.7rem;
+}
+
+.contact-header h1 {
+  font-family: "Berlin Sans FB";
+  font-size: 2.5rem;
+}
+
+.contact-header p {
+  margin-top: 1.8rem;
+  font-family: "Roboto";
+  text-align: center;
+  font-size: 1rem;
+  color: var(--gray-text);
+}
+
+.contact-form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-width: 24.9rem;
+  height: 32rem;
+  background-color: var(--black-opacity);
+  backdrop-filter: blur(1rem);
+  filter: blur(0);
+  border-radius: 2rem 2rem 0 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.5rem;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-row input,
+.form-row textarea {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  font-family: "Roboto";
+  color: var(--purple);
+}
+
+.form-row input::placeholder,
+.form-row textarea::placeholder {
+  color: var(--form-placeholder);
+}
+
+.form-row input {
+  width: 24.8rem;
+  height: 2.3rem;
+}
+
+.form-row textarea {
+  width: 24.7rem;
+  height: 12.7rem;
+}
+
+#name,
+#phone {
+  width: 11.4rem;
+  height: 2.3rem;
+}
+
+button {
+  width: 15.2rem;
+  height: 2.9rem;
+  margin: 1rem auto;
+  border-radius: 1.1rem;
+  border: none;
+  background: var(--white);
+
+  font-family: "Berlin Sans FB Demi Bold";
+  font-size: 1.2rem;
+  color: var(--iris);
+}
+
+/* Media queries for cellphones */
+@media (min-height: 600px) {
+  .contact-header {
+    transform: translateY(5%);
+  }
+
+  .contact-header img {
+    width: 7rem;
+  }
+
+  .contact-header h1 {
+    font-size: 3rem;
+  }
+
+  .contact-header p {
+    font-size: 1.1rem;
+  }
+
+  .contact-form {
+    height: 35rem;
+    padding-top: 4rem;
+  }
+
+  .form-row input,
+  .form-row textarea {
+    width: 30rem;
+  }
+
+  #name,
+  #phone {
+    width: 14rem;
+  }
+
+  .sucess,
+  .error {
+    height: 28rem;
+    width: 26rem;
+  }
+
+  .sucess h1,
+  .error h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-height: 800px) {
+  .contact-main {
+    width: 30rem;
+  }
+
+  .contact-header {
+    transform: translateY(50%);
+  }
+
+  .contact-header img {
+    width: 8rem;
+  }
+
+  .contact-header h1 {
+    font-size: 3.5rem;
+  }
+
+  .contact-header p {
+    font-size: 1.2rem;
+  }
+
+  .contact-form {
+    height: 40rem;
+    padding-top: 6rem;
+  }
+
+  .form-row input,
+  .form-row textarea {
+    width: 35rem;
+  }
+
+  #name,
+  #phone {
+    width: 16.5rem;
+  }
+
+  .sucess,
+  .error {
+    height: 30rem;
+    width: 28rem;
+  }
+
+  .sucess h1,
+  .error h1 {
+    font-size: 2rem;
+  }
+}

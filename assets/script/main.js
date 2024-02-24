@@ -14,7 +14,7 @@ function hideLoadingScreen() {
 function initializeLoadingScreen() {
   showLoadingScreen();
   window.addEventListener("pageshow", function (event) {
-    const minDisplayTime = 2000;
+    const minDisplayTime = 1000;
     const elapsedTime =
       new Date().getTime() - window.performance.timing.navigationStart;
     const remainingTime = Math.max(0, minDisplayTime - elapsedTime);

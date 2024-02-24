@@ -28,8 +28,11 @@
   --white: #fff;
   --white-menu: #f8f8f8;
   --black: #000;
+  --black-opacity: rgba(0, 0, 0, 0.35);
   --iris: #1c0541;
   --font: #eff7ff;
+  --gray-text: #dbdfe2;
+  --form-placeholder: #9aa8b6;
   --menu: rgba(17, 6, 40, 0.6);
   --hyperlink: #5200ff;
 
@@ -44,6 +47,8 @@
   --font: #000;
   --menu: rgba(223, 220, 231, 0.6);
   --hyperlink: #fff;
+  --gray-text: #220f4b;
+  --black-opacity: rgba(211, 211, 211, 0.47);
   --iris: #fff;
 }
 
@@ -78,7 +83,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 7rem;
+  margin-top: 4rem;
 }
 
 .title {

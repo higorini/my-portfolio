@@ -23,7 +23,62 @@
       <img id="language" src="../images/portuguese.svg" alt="" data-lang="pt" />
     </header>
 
-    <h1>Contato</h1>
+    <main class="contact-main">
+      <div class="contact-header">
+        <img id="contact-logo" src="../images/logo-dark.svg" alt="" />
+
+        <h1 id="contact-title">CONTACTO</h1>
+
+        <p id="contact-description">
+          Pronto para começarmos um projeto? Não hesites em entrar em contacto
+          através do formulário abaixo para pedidos de orçamento. Prometo
+          responder o mais breve possível.
+        </p>
+      </div>
+
+      <div class="contact-form">
+        <form
+          action="https://formsubmit.co/ajax/212b0e3d019d09fa1f896f160bdda9a7"
+          method="POST"
+          data-form
+        >
+          <div class="form-row">
+            <input type="text" name="name" id="name" placeholder="Nome" />
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="Telefone"
+              maxlength="14"
+            />
+          </div>
+          <div class="form-row">
+            <input type="email" name="email" id="email" placeholder="Email" />
+          </div>
+          <div class="form-row">
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              placeholder="Assunto"
+            />
+          </div>
+          <div class="form-row">
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Mensagem"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <button id="submit" type="submit" data-button>
+              BORA TRABALHAR!
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
 
     <script src="../script/main.js"></script>
     <script src="../script/contact.js"></script>
